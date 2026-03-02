@@ -12,4 +12,5 @@ public class Product {
      private String category;
      private double price;
      private int quantity;
+     private boolean active = true;
 }

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bill Success</title>
+</head>
+<body>
+
+<h2>Bill Generated Successfully</h2>
+
+<p>Bill ID: <span th:text="${bill.id}"></span></p>
+<p>Date: <span th:text="${bill.billDate}"></span></p>
+<p>Total Amount: <span th:text="${bill.totalAmount}"></span></p>
+
+<br>
+<a href="/create-bill">Create Another Bill</a>
+<br>
+<a href="/products">Back to Products</a>
+
+</body>
+</html>

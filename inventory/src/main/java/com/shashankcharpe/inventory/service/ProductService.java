@@ -20,11 +20,15 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return productRepository.findByActiveTrue();
     }
 
     public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
+        Product product = getProductById(id);
+        if(product != null) {
+            product.setActive(false);
+            productRepository.save(product);
+        }
     }
 
     public Product getProductById(Long id) {

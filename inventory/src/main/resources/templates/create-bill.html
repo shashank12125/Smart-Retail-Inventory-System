@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwww.thymeleaf.org">
+<head>
+    <title>Create Bill</title>
+</head>
+<body>
+<h2>Create Bill</h2>
+<form action="/create-bill" method="post">
+   <table border="1">
+       <tr>
+           <th>Product</th>
+           <th>Price</th>
+           <th>Available</th>
+           <th>Quantity</th>
+       </tr>
+
+       <tr th:each="product : ${products}">
+           <td th:text="${product.name}"></td>
+           <td th:text="${product.price}"></td>
+           <td th:text="${product.quantity}"></td>
+            <td>
+                <input type="number"
+                       min="0"
+                       th:name="'qty_' + ${product.id}"/>
+            </td>
+       </tr>
+   </table>
+
+    <br>
+    <button type="submit">Generate Bill</button>
+</form>
+
+<br>
+<a href="/products">Back</a>
+
+</body>
+</html>

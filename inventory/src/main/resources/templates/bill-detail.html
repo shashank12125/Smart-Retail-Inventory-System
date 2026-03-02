@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+   <title>Bill Details</title>
+</head>
+<body>
+<h2>Bill Details</h2>
+
+<p><strong>Bill ID:</strong> <span th:text="${bill.id}"></span></p>
+<p><strong>Date:</strong> <span th:text="${bill.billDate}"></span></p>
+<p><strong>Total:</strong> <span th:text="${bill.totalAmount}"></span></p>
+
+<h3>Items</h3>
+
+<table border="1">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+    </tr>
+
+    <tr th:each="item : ${bill.items}">
+        <td th:text="${item.product.name}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.subtotal}"></td>
+    </tr>
+</table>
+
+<br>
+<a href="/bills">Back to Bill History</a>
+
+</body>
+</html>
