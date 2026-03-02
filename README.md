@@ -1,78 +1,191 @@
 # 🛒 Smart Retail Inventory & Billing Management System
 
-A Spring Boot–based backend application designed to manage retail inventory and billing operations efficiently.
+A full-stack Retail Inventory and Billing Management System built using Spring Boot, JPA (Hibernate), Thymeleaf, and MySQL.
 
----
+This system allows product management, multi-product billing with transaction safety, soft delete implementation, and bill history tracking.
+<hr>
+<h3><b>🚀Features</b></h3>
 
-## 📌 Project Overview
+📦 <b>Product Management</b>
+    
+       ● Add new products
+                
+       ● Edit product details
+                
+       ● Soft delete (deactivation instead of physical deletion)
+        
+       ● View active product list
 
-This system helps retail stores to:
+🧾 <b>Billing Module</b>
 
-- Manage product inventory
-- Track stock quantity
-- Generate bills
-- Maintain sales records
-- Reduce stock automatically after billing
+       ● Multi-product billing in a single transaction
+        
+       ● Automatic subtotal & total calculation
+        
+       ● Automatic stock reduction
+        
+       ● Transaction management using @Transactional
+        
+       ● Rollback on failure (ensures data consistency)
 
-The goal of this project is to build a scalable backend system using modern Java technologies.
+📊 <b>Bill History</b>
 
----
+       ● View all previous bills
+        
+       ● View detailed bill items
+        
+       ● Persistent billing records stored relationally
 
-## 🛠️ Tech Stack
+🧠 <b>Key Concepts Implemented</b>
 
-- Java 17  
-- Spring Boot  
-- Spring MVC  
-- Spring Data JPA  
-- MySQL  
-- Maven  
-- Thymeleaf  
+● MVC Architecture (Controller → Service → Repository)
 
----
+● JPA Entity Relationships
 
-## 📂 Project Structure
-    controller/
-    service/
-    repository/
-    model/
-    resources/templates/
+        ● OneToMany (Bill → BillItem)
+        
+        ● ManyToOne (BillItem → Product)
 
----
+● Transaction Management (@Transactional)
 
-## ✨ Features Implemented
+● Soft Delete (active flag instead of physical deletion)
 
-- ✅ Product CRUD Operations  
-- ✅ Service Layer Implementation  
-- ✅ MVC Architecture  
-- ✅ Database Integration  
-- ✅ Template Rendering  
+● Relational Database Integrity
 
----
+● Exception Handling
 
-## 🚀 Future Enhancements
+● Form Binding using Thymeleaf
 
-- JWT Authentication  
-- Role Based Access (Admin / Staff)  
-- Sales Report Generation  
-- Low Stock Alerts  
-- Invoice Generation System  
+<hr>
 
----
+🛠️ Tech Stack
 
-## ▶️ How to Run
+● <b>Backend:</b> Spring Boot 3
 
-1. Clone the repository  
-2. Configure database in `application.properties`  
-3. Run the project using: mvn spring-boot:run
+● <b>ORM:</b> Spring Data JPA (Hibernate)
 
+● <b>Frontend:</b> Thymeleaf
 
-4. Open your browser and visit:  
-   http://localhost:8080  
+● <b>Database:</b> MySQL
 
----
+● <b>Build Tool:</b> Maven
 
-## 👨‍💻 Developer
+● <b>Version Control:</b> Git & GitHub
 
-**Shashank Charpe**  
-MCA Student | Java Backend Developer  
-Focused on building scalable backend systems.
+🏗️ <b>Project Architecture</b>
+
+        User (Browser)
+             ↓
+        Controller
+             ↓
+        Service (Business Logic + Transactions)
+             ↓
+        Repository
+             ↓
+        MySQL Database
+
+🗃️ <b>Database Schema Overview</b>
+
+<b>Product</b>
+
+       ● id
+        
+       ● name
+        
+       ● category
+        
+       ● price
+        
+       ● quantity
+        
+       ● active (soft delete flag)
+
+<b>Bill</b>
+
+       ● id
+        
+       ● billDate
+        
+       ● totalAmount
+
+<b>BillItem</b>
+
+       ● id
+        
+       ● bill_id (FK)
+        
+       ● product_id (FK)
+        
+       ● quantity
+        
+       ● subtotal
+
+🔄 <b>System Flow</b>
+
+1. Admin adds products to inventory.
+
+2. Customer billing is performed.
+
+3. System:
+
+    ● Validates stock
+    
+    ● Calculates subtotal & total
+    
+    ● Reduces stock
+    
+    ● Saves bill & bill items
+
+4. All operations run inside a transaction.
+
+5. Bills can be viewed anytime in Bill History.
+
+⚙️ <b>How to Run the Project<b/>
+
+1. Clone repository:
+       git clone https://github.com/shashank12125/Smart-Retail-Inventory-System
+2. Open in Intelij/ any IDE.
+3. Configure MySQL in application.properties.
+4. Run:
+    InventoryApplication.java
+5. Open in Browser:
+       http://localhost:8080
+
+🔒 <b>Transaction Safety</b>
+
+Billing operations are wrapped inside @Transactional.
+
+If:
+
+    ● Stock is insufficient
+    
+    ● Any runtime exception occurs
+
+Then:
+
+    ● All changes are rolled back
+    
+    ● Database remains consistent
+
+📌 <b>Why Soft Delete?</b>
+
+Instead of deleting products physically, an active flag is used to preserve billing history and maintain referential integrity.
+
+🔮 <b>Future Enhancements</b>
+
+● User authentication (Admin / Staff roles)
+
+● Sales dashboard
+
+● Low stock alerts
+
+● PDF invoice generation
+
+● GST calculation
+
+● Cloud deployment
+
+👨‍💻 <b>Author</b>
+
+<b>Shashank Charpe</b>
+MCA Student | Backend Developer (Spring Boot Enthusiast)
