@@ -35,4 +35,8 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
+    public List<Product> getLowStockProducts() {
+        return productRepository.findByQuantityLessThan(5);
+    }
+
 }

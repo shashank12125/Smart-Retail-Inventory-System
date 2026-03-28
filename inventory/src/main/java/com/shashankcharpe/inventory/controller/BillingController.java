@@ -1,11 +1,12 @@
 package com.shashankcharpe.inventory.controller;
-
 import com.shashankcharpe.inventory.model.Bill;
 import com.shashankcharpe.inventory.service.BillingService;
 import com.shashankcharpe.inventory.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class BillingController {
@@ -63,6 +64,17 @@ public class BillingController {
         return "bill-detail";
     }
 
+    @PostMapping("/clear-bills")
+    public String clearBills() {
+        billingService.clearAllBills();
+        return "redirect:/bills";
+    }
+
+    @GetMapping("/top-products")
+    @ResponseBody
+    public List<Object[]> getTopProducts() {
+        return billingService.getTopSellingProducts();
+    }
 
 
 }

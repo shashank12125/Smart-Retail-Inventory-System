@@ -3,16 +3,20 @@ import com.shashankcharpe.inventory.model.*;
 import com.shashankcharpe.inventory.repository.*;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BillingService {
     private final ProductRepository productRepository;
     private final BillRepository billRepository;
+    private final BillItemRepository billItemRepository;
 
-    public BillingService(ProductRepository productRepository, BillRepository billRepository) {
+    public BillingService(ProductRepository productRepository, BillRepository billRepository, BillItemRepository billItemRepository) {
         this.productRepository = productRepository;
         this.billRepository = billRepository;
+        this.billItemRepository = billItemRepository;
     }
 
     // new update
@@ -65,7 +69,16 @@ public class BillingService {
         bill.setTotalAmount(totalAmount);
 
         return billRepository.save(bill);
+    }
 
+    @Transactional
+    public void clearAllBills() {
+        billItemRepository.deleteAll();
+        billRepository.deleteAll();
+    }
+
+    public List<Object[]> getTopSellingProducts() {
+        return billItemRepository.findTopSellingProducts();
     }
 
 }

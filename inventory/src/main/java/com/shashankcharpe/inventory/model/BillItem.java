@@ -1,7 +1,11 @@
 package com.shashankcharpe.inventory.model;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Data
 
@@ -17,6 +21,7 @@ public class BillItem {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
 
     private int quantity;
     private double subtotal;

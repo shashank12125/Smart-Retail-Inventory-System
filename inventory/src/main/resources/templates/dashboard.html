@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+
+<h1>Smart Retail Dashboard</h1>
+
+<div style="border:1px solid black; padding:10px; margin:10px;">
+    <h3>Total Products</h3>
+    <p th:text="${totalProducts}"></p>
+</div>
+
+<div style="border:1px solid black; padding:10px; margin:10px;">
+    <h3>Low Stock Products</h3>
+    <p th:text="${lowStockCount}"></p>
+</div>
+
+<div style="border:1px solid black; padding:10px; margin:10px;">
+    <h3>Top Selling Products</h3>
+    <p th:text="${topProduct}"></p>
+</div>
+
+</body>
+</html>

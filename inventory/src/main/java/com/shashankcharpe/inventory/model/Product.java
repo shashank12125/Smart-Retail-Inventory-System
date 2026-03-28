@@ -13,4 +13,15 @@ public class Product {
      private double price;
      private int quantity;
      private boolean active = true;
+     @Column(name="threshold_quantity")
+     private int thresholdQuantity;
+
+    public int getThresholdQuantity() {
+        return thresholdQuantity;
+    }
+
+    public void setThresholdQuantity(int thresholdQuantity) {
+        this.thresholdQuantity = thresholdQuantity;
+    }
+
 }

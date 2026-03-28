@@ -7,6 +7,23 @@
 
 <h2>Product List</h2>
 
+<div th:if="${lowStockProducts != null and !#lists.isEmpty(lowStockProducts)}"
+     style="background:#ffcccc;padding:10px;margin-bottom:10px;">
+    <b>Low Stock Products:</b>
+    <ul>
+        <li th:each="p : ${lowStockProducts}">
+            <span th:text="${p.name}"></span>
+            (Stock: <span th:text="${p.quantity}"></span>)
+
+            <a th:href="@{'/restock/' + ${p.id}}"
+               style="color:blue; margin-left:10px;">Restock</a>
+            <input type="number" name="quantity"/>
+            <button> + Add</button>
+
+        </li>
+    </ul>
+</div>
+
 <table border="1">
     <tr>
         <th>Name</th>
@@ -15,14 +32,15 @@
         <th>Quantity</th>
     </tr>
 
-    <tr th:each="product : ${products}">
-        <td th:text="${product.name}"></td>
-        <td th:text="${product.category}"></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.quantity}"></td>
+    <tr th:each="p : ${products}" th:if="${p != null}">
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.category}"></td>
+        <td th:text="${p.price}"></td>
+        <td th:text="${p.quantity}"></td>
         <td>
-            <a th:href="@{/delete/{id}(id=${product.id})}">Delete</a>
-            <a th:href="@{/edit/{id}(id=${product.id})}">Edit</a>
+            <a th:href="@{/delete/{id}(id=${p.id})}">Delete</a>
+            <a th:href="@{/edit/{id}(id=${p.id})}">Edit</a>
+            <a th:href="@{'/restock/' + ${p.id}}">Restock</a>
         </td>
     </tr>
 

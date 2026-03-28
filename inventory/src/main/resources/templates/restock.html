@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Restock Product</title>
+</head>
+<body>
+
+<h2>Restock Product</h2>
+<form action="/update-stock" method="post">
+    <input type="hidden" name="id" th:value="${product.id}" />
+
+    <p>Product: <span th:text="${product.name}"></span> </p>
+
+    <label>Enter Quantity to Add:</label>
+    <input type="number" name="quantity" required />
+
+    <button type="submit">Update Stock</button>
+
+</form>
+
+</body>
+</html>
